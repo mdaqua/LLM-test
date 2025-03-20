@@ -63,3 +63,9 @@ class API:
     def _get_api_key(self, config):
         """轮询API密钥"""
         return random.choice(config["api_keys"])
+    
+    def _get_params(self, config):
+        """获取请求参数"""
+        return {
+            "timeout": config["timeout"]
+        }
