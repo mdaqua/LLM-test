@@ -1,0 +1,9 @@
+Classification: ['一般案件']
+Keywords: 房屋装修, 纠纷
+
+Classification: 一般案件
+Keywords: 噪音扰民, 施工, 管网改造
+
+Classification: ['敏感案件']
+Keywords: 隐私泄露, 隐私权, 未经同意, 酒店
+

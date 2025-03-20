@@ -48,17 +48,17 @@ def main():
     orchestrator = RequestOrchestrator(api, cache)
 
     # 从文件读取消息
-    input_file = "input_messages.txt"  # 输入文件路径
+    input_file = "messages/input_messages.txt"  # 输入文件路径
     requests = read_messages(input_file)
 
     # 执行并发请求
     responses = orchestrator.parallel_requests(requests)
 
     # 将结果写入文件
-    output_file = "output_results.txt"  # 输出文件路径
+    output_file = "messages/output_results.txt"  # 输出文件路径
     write_results(responses, output_file)
 
-    print(f"Results have been written to {output_file}")
+    print(f"结果已保存至 {output_file}")
 
 if __name__ == "__main__":
     main()
