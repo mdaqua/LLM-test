@@ -9,7 +9,7 @@ DEFAULT_CONFIG = {
     "providers": {
         "dify": {
             "base_url": "https://api.dify.ai/v1",
-            "api_keys": ["app-AMsf4v6cYJKAW6XeCL9p9BxY"],
+            "api_keys": ["app-xxx"],
             "timeout": 15,
             "max_retries": 3
         }
