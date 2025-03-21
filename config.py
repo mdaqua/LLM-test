@@ -1,6 +1,7 @@
 # config.py
 from pathlib import Path
 import json
+import sys
 
 # CONFIG_PATH = Path.home() / ".config/api_service/config.json"
 CONFIG_PATH = Path(__file__).parent / "config.json"
@@ -26,4 +27,7 @@ def load_config():
         with open(CONFIG_PATH) as f:
             return json.load(f)
     except FileNotFoundError:
-        return DEFAULT_CONFIG
+        with open(CONFIG_PATH, "w") as f:
+            json.dump(DEFAULT_CONFIG, f, indent=4)
+        print("请配置 config.json 文件")
+        sys.exit(1)
