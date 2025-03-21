@@ -21,7 +21,7 @@ def extract_info(response):
         answer_data = json.loads(answer)
         # 提取信息模块
         classification = answer_data.get("classification", "")
-        keywords = answer_data.get("key_indicators", [])
+        keywords = answer_data.get("keywords", [])
         
         return classification, keywords
     except (KeyError, json.JSONDecodeError) as e:
@@ -35,7 +35,7 @@ def write_results(results, file_path):
             classification, keywords = extract_info(response)
             # 输出格式化
             file.write(f"Classification: {classification}\n")
-            file.write(f"Key Indicators: {', '.join(keywords)}\n")
+            file.write(f"Keywords: {', '.join(keywords)}\n")
             file.write("\n")  # 空行分隔
 
 def main():

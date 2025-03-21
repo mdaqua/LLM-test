@@ -54,7 +54,7 @@ class API:
     
     def _get_params(self, config, messages):
         """获取请求参数"""
-        params = config.get("params", {})
+        params = config.get("params", {}).copy() # 避免修改原始配置
         for key, value in params.items():
             if isinstance(value, str) and "{user_input}" in value:
                 params[key] = value.format(user_input=messages)
