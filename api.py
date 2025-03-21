@@ -20,23 +20,11 @@ class API:
             attempt += 1
             start_time = time.time()
             try:
-                # response = requests.post(
-                #     f"{config['base_url']}/chat/completions",
-                #     headers={"Authorization": f"Bearer {self._get_api_key(config)}"},
-                #     json={"messages": messages},
-                #     timeout=config["timeout"]
-                # )
-
+                params = self._get_params(config, messages)
                 response = requests.post(
-                    f"{config['base_url']}/chat-messages",
+                    f"{config['base_url']}",
                     headers={"Authorization": f"Bearer {self._get_api_key(config)}"},
-                    json={
-                        "inputs": {},
-                        "query": messages,
-                        "response_mode": "blocking",
-                        "conversation_id": "",
-                        "user": "1",
-                    },
+                    json=params,
                 )
                 response.raise_for_status()
                 elapsed = time.time() - start_time
@@ -64,8 +52,10 @@ class API:
         """轮询API密钥"""
         return random.choice(config["api_keys"])
     
-    def _get_params(self, config):
+    def _get_params(self, config, messages):
         """获取请求参数"""
-        return {
-            "timeout": config["timeout"]
-        }
+        params = config.get("params", {})
+        for key, value in params.items():
+            if isinstance(value, str) and "{user_input}" in value:
+                params[key] = value.format(user_input=messages)
+        return params
