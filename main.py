@@ -11,7 +11,7 @@ def read_messages(file_path):
         return [[{"role": "user", "content": line.strip()}] for line in file if line.strip()]
 
 def extract_info(response):
-    """从响应中提取 classification 和 keywords"""
+    """从响应中提取信息"""
     try:
         # 提取 answer 部分
         answer = response["answer"]
@@ -20,7 +20,6 @@ def extract_info(response):
         # 解析 JSON
         answer_data = json.loads(answer)
         # 提取信息模块
-        # 提取 classification 和 keywords
         classification = answer_data.get("classification", "")
         keywords = answer_data.get("keywords", [])
         
